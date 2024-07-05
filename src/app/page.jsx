@@ -21,8 +21,8 @@ const Home = () => {
 
 
     </div>
-    <div className={styles.imgContainer}>
-    <Image src="/hero.gif" alt="" fill className={styles.heroImg} />
+    <div>
+      <Image src="/hero.gif" alt="" width={450} height={450} />
     </div>
   </div>
 };
