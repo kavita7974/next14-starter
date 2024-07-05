@@ -17,7 +17,6 @@ const getData = async () => {
 
 const BlogPage = async () => {
   const postsAllData = await getData();
-  console.log("all posts are",postsAllData)
   return (
     <div className={styles.container}>
       {postsAllData?.map((item) => (
