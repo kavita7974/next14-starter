@@ -21,13 +21,12 @@ const PostUser = async({userId}) => {
 
     // Fetch data without an API
     const userDetails = await getUser(userId)
-    console.log("user details",userDetails)
 
     return (
         <div>
             <div className={styles.container}>
                 <span className={styles.title}>Author</span>
-                <span className={styles.username}>{userDetails.name}</span>
+                <span className={styles.username}>{userDetails.username}</span>
             </div>
         </div>
     )

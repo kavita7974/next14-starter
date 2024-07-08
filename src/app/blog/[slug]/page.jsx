@@ -19,17 +19,11 @@ import { getPost } from '@/lib/data';
 const SinglePostPage = async ({ params }) => {
   const { slug } = params;
 
-  console.log("slug is",slug)
-
   // Fetch data with an API
   // const post = await getData(slug);
 
   // Fetch data without an API
   const post = await getPost(slug)
-
-  console.log("ppppp data is",post)
-
-
 
   return (
     <div className={styles.container}>

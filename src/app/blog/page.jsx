@@ -17,8 +17,6 @@ import { getPosts } from '@/lib/data';
 // }
 
 
-
-
 const BlogPage = async () => {
 
   // Fetch data with an API
