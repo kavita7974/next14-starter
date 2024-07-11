@@ -29,7 +29,6 @@ export const getPosts = async () => {
     try {
       connectTODb();
       const user = await User.findById(id);
-      console.log("user returned is",user)
       return user;
     } catch (err) {
       console.log(err);

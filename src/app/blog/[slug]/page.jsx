@@ -4,15 +4,25 @@ import Image from 'next/image';
 import PostUser from '@/components/postUser/postUser';
 import { getPost } from '@/lib/data';
 
-// const getData = async (slug) => {
+const getData = async (slug) => {
+  const res = await fetch(`http://localhost:3000/api/blog/${slug}`);
+  if (!res.ok) {
+    throw new Error("Something Went wrong");
+  }
+  return res.json();
 
-//   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`);
-//   if (!res.ok) {
-//     throw new Error("Something Went wrong");
-//   }
-//   return res.json();
+}
 
-// }
+export const generateMetadata = async ({params}) =>{
+  const { slug } = params;
+
+  const post = await getPost(slug)
+
+  return {
+     title:post.title,
+     description:post.desc
+  }
+}
 
 
 
@@ -20,10 +30,10 @@ const SinglePostPage = async ({ params }) => {
   const { slug } = params;
 
   // Fetch data with an API
-  // const post = await getData(slug);
+  const post = await getData(slug);
 
   // Fetch data without an API
-  const post = await getPost(slug)
+  // const post = await getPost(slug)
 
   return (
     <div className={styles.container}>
@@ -34,21 +44,18 @@ const SinglePostPage = async ({ params }) => {
       <div className={styles.textContainer}>
         <h1 className={styles.title}>{post.title}</h1>
         <div className={styles.detail}>
-          <Image className={styles.avatar}
-            src="https://images.pexels.com/photos/26272167/pexels-photo-26272167/free-photo-of-a-cake-with-cherries-on-top-and-a-slice-of-cake.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt=""
-            width={50} height={50} />
           <Suspense fallback={<div>Loading....</div>}>
             <PostUser userId={post.userId} />
           </Suspense>
 
           <div className={styles.detailText}>
             <span className={styles.detailTitle}>Published</span>
-            <span className={styles.detailValue}>01-01-2024</span>
+            <span className={styles.detailValue}>{post.createdAt.toString().slice(4,16)}</span>
 
           </div>
         </div>
         <div className={styles.content}>
-          {post.body}
+          {post.desc}
 
         </div>
       </div>

@@ -2,6 +2,7 @@
 import React from 'react'
 import styles from "./postUser.module.css"
 import { getUser } from '@/lib/data'
+import Image from 'next/image'
 
 // const getUserName = async (userId) => {
 
@@ -10,12 +11,11 @@ import { getUser } from '@/lib/data'
 //       throw new Error("Something Went wrong");
 //     }
 //     return res.json();
-  
+
 //   }
 
-const PostUser = async({userId}) => {
-    console.log("user id is",userId)
-    
+const PostUser = async ({ userId }) => {
+
     // Fetch data with an API
     // const userDetails = await getUserName(userId);
 
@@ -25,8 +25,13 @@ const PostUser = async({userId}) => {
     return (
         <div>
             <div className={styles.container}>
-                <span className={styles.title}>Author</span>
-                <span className={styles.username}>{userDetails.username}</span>
+                <Image className={styles.avatar}
+                    src={userDetails?.img ? userDetails?.img : "/noavatar.png"} alt=""
+                    width={50} height={50} />
+                <div className={styles.texts}>
+                    <span className={styles.title}>Author</span>
+                    <span className={styles.username}>{userDetails.username}</span>
+                </div>
             </div>
         </div>
     )

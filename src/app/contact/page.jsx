@@ -7,10 +7,10 @@ import dynamic from "next/dynamic";
 
 const HydrationTestNoSSR = dynamic(()=>import("@/components/hydrationTest"), {ssr: false})
 
-// export const metadata = {
-//   title: "Contact Page",
-//   description: "Contact description",
-// };
+export const metadata = {
+  title: "Contact Page",
+  description: "Contact description",
+};
 
 const ContactPage = () => {
 
@@ -26,7 +26,7 @@ const ContactPage = () => {
       </div>
       <div className={styles.formContainer}>
         {/* // This will show value from client side bez we have already set ssr to false */}
-        <HydrationTestNoSSR/> 
+        {/* <HydrationTestNoSSR/>  */}
         {/* <div suppressHydrationWarning>{a}</div> // when we do this it will show server side value */}
         <form action="" className={styles.form}>
           <input type="text" placeholder="Name and Surname" />
